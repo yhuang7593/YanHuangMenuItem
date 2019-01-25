@@ -11,22 +11,19 @@ public class Trio implements MenuItem{
         }
         public String getName(){return sandwich.getName() +"/"+salad.getName()+"/"+ drink.getName();}
         public double getPrice(){
-            double a=sandwich.getPrice()+salad.getPrice()+drink.getPrice();
-            double b=0;
-            if(sandwich.getPrice()<=salad.getPrice()) {
-                if (salad.getPrice() <= salad.getPrice()) {
-                    b = sandwich.getPrice();
-                } else {
-                    b = drink.getPrice();
+                double priceSandwich = this.sandwich.getPrice();
+                double priceSalad = this.salad.getPrice();
+                double priceDrink = this.drink.getPrice();
+                double price = 0;
+
+                if ((priceSandwich <= priceSalad) && (priceSandwich <= priceDrink)) {
+                    price =  priceSalad + priceDrink;
+                } else if ((priceSalad <= priceSandwich) && (priceSalad <= priceDrink)) {
+                    price = priceSandwich + priceDrink;
+                } else if ((priceDrink <= priceSalad) && (priceDrink <= priceSandwich)) {
+                    price = priceSalad + priceSandwich;
                 }
-            }else{
-                if(salad.getPrice()<=drink.getPrice()){
-                    b=salad.getPrice();
-                }else{
-                    b=drink.getPrice();
-                }
+                return price;
             }
-            return a-b;
-        }
 }
 
